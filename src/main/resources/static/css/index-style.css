@@ -1,0 +1,46 @@
+.welcome-banner {
+    display: block;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    padding: 0;
+}
+
+.banner-desktop {
+    padding-top: 200px;
+    padding-bottom: 150px;
+    background-image: url(/assets/images/welcome.jpg);
+    background-size: calc(50% - 1rem);
+    background-position: right;
+    background-color: #212427;
+}
+
+.banner-mobile {
+    background-image: url(/assets/images/welcome.jpg);
+}
+
+.mask {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: rgba(0,0,0,0.5);
+    padding-top: 150px;
+    padding-bottom: 50px;
+    z-index: 1;
+    color: #fff;
+}
+
+main .banner-btn {
+    background-color: #f10d33;
+    color: #eeeeee;
+    box-shadow: 0 0 0 rgb(145, 36, 54);
+    transition: font-size 0.2s ease, font-weight 0.2s ease, box-shadow 0.2s ease-in-out;
+}
+
+#banner-dt-btn:hover {
+    background-color: #eee;
+    color: #212427;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgb(243, 61, 91);
+}

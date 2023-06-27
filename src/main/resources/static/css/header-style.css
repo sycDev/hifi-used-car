@@ -1,0 +1,42 @@
+nav {
+    background-color: #fff;
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.nav-link:hover {
+    color: #f10d33;
+}
+
+#top-nav .active {
+    color: #c00a28;
+}
+
+#signup-btn:hover {
+    color: #086972;
+    background-color: rgba(241, 13, 51, 0.2);
+}
+
+#login-btn {
+    background-color: #f10d33;
+    color: #fff;
+}
+
+#login-btn:hover {
+    background-color: rgba(192, 10, 40, 0.8);
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+	background-color: rgba(241, 13, 51, 0.2);
+	color: #f10d33;
+}
