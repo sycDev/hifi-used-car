@@ -7,22 +7,22 @@ Hi-Fi Used Car Sales Portal is a Java application developed using the [Spring Bo
 There are two roles: User & Administrator
 
 User Module
-- [] Registration (User & Administrator) [Both]
-- [] Authentication & Authorization
-- [] View list of registered users [Admin]
-- [] Update Profile [Both]
-- [] Deactivate user account [Admin]
-- [] Make a user as Administrator [Admin]
+- [ ] Registration (User & Administrator) [Both]
+- [ ] Authentication & Authorization
+- [ ] View list of registered users [Admin]
+- [ ] Update Profile [Both]
+- [ ] Deactivate user account [Admin]
+- [ ] Make a user as Administrator [Admin]
 
 Car Posting Module
-- [] Post car for sale with picture upload [User]
-- [] Search for cars by Make, Model, Registration Year & Price Range [Both]
-- [] View car information [Both]
+- [ ] Post car for sale with picture upload [User]
+- [ ] Search for cars by Make, Model, Registration Year & Price Range [Both]
+- [ ] View car information [Both]
 
 Bidding Module
-- [] Place a bid [User]
-- [] Keep track of latest highest bid [Both]
-- [] Deactivate car sale to lock the highest bid price (or automatically after end time) [Admin]
+- [ ] Place a bid [User]
+- [ ] Keep track of latest highest bid [Both]
+- [ ] Deactivate car sale to lock the highest bid price (or automatically after end time) [Admin]
 
 ## Pages
 
