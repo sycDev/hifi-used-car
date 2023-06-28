@@ -57,4 +57,24 @@ public class CommonController {
 	public String showPolicyPage() {
 		return "policy";
 	}
+	
+	/**
+     * Displays the Login page.
+     *
+     * @return the name of the view to display Login page
+     */
+    @GetMapping("/signin")
+    public String showLoginPage() {
+        return "login";
+    }
+    
+    /**
+     * Displays the Sign Up page.
+     *
+     * @return the name of the view to display Sign Up page
+     */
+    @GetMapping("/signup")
+    public String showSignUpPage() {
+        return "signup";
+    }
 }
