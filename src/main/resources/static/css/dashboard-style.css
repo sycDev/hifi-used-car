@@ -1,0 +1,11 @@
+#dashboard .card a {
+	color: #212427;
+}
+
+#dashboard .card:hover {
+	background-color: rgba(243, 61, 91, 0.2);
+}
+
+#dashboard .card i {
+	color: #f10d33;
+}

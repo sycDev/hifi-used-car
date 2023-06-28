@@ -1,5 +1,5 @@
 <!-- Footer Styling -->
-<link rel="stylesheet" type="text/css" href="css/footer-style.css">
+<link rel="stylesheet" type="text/css" href="../css/footer-style.css">
 
 <footer class="main-footer">
 	<div class="container">
@@ -9,7 +9,7 @@
 					<div class="logo-widget footer-widget">
 						<figure class="logo-box">
 							<a href="/">
-								<img src="assets/images/company-logo-full.png" alt="">
+								<img src="../assets/images/company-logo-full.png" alt="logo-footer">
 							</a>
 						</figure>
 						<div class="text">
