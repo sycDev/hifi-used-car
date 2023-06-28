@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>${errorName}</title>
-	<link rel="icon" href="../assets/images/company-logo-only.png">
+	<link rel="icon" href="/assets/images/company-logo-only.png">
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
@@ -14,7 +14,7 @@
 <div class="d-flex align-items-center justify-content-center vh-100">
 	<div class="text-center">
 		<c:if test="${not empty errorImg}">
-			<img class="img-fluid" src="../assets/images/${errorImg}" alt="${errorName}" width="360px">
+			<img class="img-fluid" src="/assets/images/${errorImg}" alt="${errorName}" width="360px">
 		</c:if>
 		<p class="fs-3 fw-bold">${errorMsg}</p>
 		<p class="lead">${errorDesc}</p>

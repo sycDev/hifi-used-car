@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!-- Header Styling -->
-<link rel="stylesheet" type="text/css" href="../css/header-style.css">
+<link rel="stylesheet" type="text/css" href="/css/header-style.css">
 
 <nav class="navbar navbar-expand-lg fixed-top" aria-label="Navbar">
 	<div class="container-fluid">
@@ -11,14 +11,14 @@
 		</button>
 		<span class="navbar-brand me-0 d-lg-none">
             <a href="/">
-                <img src="../assets/images/company-logo-full.png" width="200" alt="logo">
+                <img src="/assets/images/company-logo-full.png" width="200" alt="logo">
             </a>
         </span>
 
 		<div class="navbar-collapse d-lg-flex collapse" id="top-nav">
             <span class="navbar-brand col-lg-3 me-0 d-none d-lg-block">
                 <a href="/">
-                    <img src="../assets/images/company-logo-full.png" width="200" alt="logo">
+                    <img src="/assets/images/company-logo-full.png" width="200" alt="logo">
                 </a>
             </span>
             
@@ -73,7 +73,7 @@
 					<ul class="list-unstyled my-auto">
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="../assets/images/default-profile-pic.png" alt="User Profile Picture" class="rounded-circle" height="35">
+								<img src="/assets/images/default-profile-pic.png" alt="User Profile Picture" class="rounded-circle" height="35">
 							</a>
 							<ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="navbarDropdownMenuLink">
 								<li>
@@ -94,7 +94,7 @@
 									</li>
 								</sec:authorize>
 								<li>
-									<form:form action="logout" method="post">
+									<form:form action="/logout" method="post">
 										<input type="submit" name="Logout" value="Logout" class="dropdown-item link-danger"></input>
 									</form:form>
 								</li>

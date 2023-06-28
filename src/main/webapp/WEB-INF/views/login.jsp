@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hi-Fi Cars | Login</title>
-    <link rel="icon" href="../assets/images/company-logo-only.png">
+    <link rel="icon" href="/assets/images/company-logo-only.png">
  	<!-- Custom Styling -->
-    <link href="../css/auth-style.css" rel="stylesheet">
+    <link href="/css/auth-style.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -24,7 +24,7 @@
         <div class="form-container sign-in-container">
             <form:form action="/login" method="post" id="login-form">
 				<a href="/">
-				    <img src="../assets/images/company-logo-only.png" width="50" height="auto" alt="logo">
+				    <img src="/assets/images/company-logo-only.png" width="50" height="auto" alt="logo">
 				</a>
 				<h1>Welcome Back!</h1>
 				<p>
@@ -124,7 +124,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
 <!-- Custom JS Script for Auth Form Validation -->
-<script src="../js/authform-script.js"></script>
+<script src="/js/authform-script.js"></script>
 <script>
 	$(document).ready(function() {
 		validateForm('login-form');

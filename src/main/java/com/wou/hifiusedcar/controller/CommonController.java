@@ -117,7 +117,7 @@ public class CommonController {
     		redirectAttributes.addFlashAttribute("errMsg", "Existing user found.");
     		return "redirect:/signup";
     	} else {
-    		userService.create(user);
+    		userService.create(user, "USER");
     		// Add a success flash attribute
     		redirectAttributes.addFlashAttribute("successMsg", "Account successfully signed up!");
     		return "redirect:/signin";

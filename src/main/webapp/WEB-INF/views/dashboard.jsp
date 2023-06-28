@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hi-Fi Cars | Admin Dashboard</title>
-	<link rel="icon" href="../assets/images/company-logo-only.png">
+	<link rel="icon" href="/assets/images/company-logo-only.png">
 	<!-- Custom Stylesheet -->
-	<link rel="stylesheet" type="text/css" href="../css/dashboard-style.css">
+	<link rel="stylesheet" type="text/css" href="/css/dashboard-style.css">
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -27,7 +27,7 @@
 									<i class="fas fa-user fa-3x"></i>
 									<h5 class="card-title mt-3">Users</h5>
 									<p class="card-text">
-										Total of Users
+										Total Users: ${totalUsers}
 									</p>
 								</div>
 							</a>
@@ -40,7 +40,7 @@
 									<i class="fas fa-car fa-3x"></i>
 									<h5 class="card-title mt-3">Listings</h5>
 									<p class="card-text">
-										Total of Listings
+										Total Listings
 									</p>
 								</div>
 							</a>
@@ -53,7 +53,7 @@
 									<i class="fas fa-gavel fa-3x"></i>
 									<h5 class="card-title mt-3">Bids</h5>
 									<p class="card-text">
-										Total of Bids
+										Total Bids
 									</p>
 								</div>
 							</a>

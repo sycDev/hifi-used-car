@@ -5,31 +5,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Hi-Fi Cars | Sign Up</title>
+	<title>Hi-Fi Cars | Register as Admin</title>
     <link rel="icon" href="/assets/images/company-logo-only.png">
-	<!-- Custom Styling -->
-    <link href="/css/auth-style.css" rel="stylesheet">
+    <!-- Form Styling -->
+	<link rel="stylesheet" type="text/css" href="/css/form-style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <style>
-        .overlay-container {
-            background-image: url(/assets/images/signup.jpg);
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container" id="auth-container">
-        <div class="form-container sign-up-container">
-            <form:form modelAttribute="user" action="/register" method="post" id="register-form">
-				<a href="/">
-				    <img src="/assets/images/company-logo-only.png" width="50" alt="logo">
-				</a>
-				<h1>Sign Up</h1>
-				<p>
-				    Already a member? <a href="/signin">Login</a>
-				</p>
+<!-- Header -->
+<%@ include file="component/header.jsp" %>
+
+<!-- Main Section -->
+<main>
+<section class="py-4 container">
+		<div class="row mt-5 text-center">
+			<div class="col-lg-9 mx-auto my-4">
+				<h2 class="fw-light">Admin Registration</h2>
+			</div>
+		</div>
+		<div class="container w-75">
+			<form:form modelAttribute="user" id="register-admin-form" action="/dashboard/admin/register" method="post" class="mx-lg-5">
 				
 				<!--  Display Error Message Start -->
 				<c:if test="${errMsg != null}">
@@ -45,28 +43,43 @@
 					</div>
 				</c:if>
 				<!--  Display Error Message End -->
-				
-				<input type="text" name="username" id="username" placeholder="Username" required />
-				<div class="error">
-					<small id="error-username"></small>
+
+				<div class="mb-3">
+					<label class="form-label" for="username">Username: *</label>
+					<input type="text" class="form-control" name="username" id="username" required>
+					<div class="error">
+						<p id="error-username"></p>
+					</div>
 				</div>
 				
-				<input type="email" name="email" id="email" placeholder="Email" required />
-				<div class="error">
-					<small id="error-email"></small>
+				<div class="mb-3">
+					<label class="form-label" for="email">Email: *</label>
+					<input type="text" class="form-control" name="email" id="email" required>
+					<div class="error">
+						<p id="error-email"></p>
+					</div>
 				</div>
 				
-				<input type="password" name="password" id="password" placeholder="Password" required />
-				<div class="error">
-					<small id="error-password"></small>
+				<div class="mb-3">
+					<label class="form-label" for="password">Password: *</label>
+					<input type="password" class="form-control" name="password" id="password" required>
+					<div class="error">
+						<p id="error-password"></p>
+					</div>
 				</div>
-				
-				<button type="submit">Sign Up</button>
-            </form:form>
-        </div>
-        <div class="overlay-container">
-        </div>
-    </div>
+
+				<div class="py-3 text-center">
+					<a href="/dashboard/users" class="btn btn-light" id="dismiss-btn">Cancel</a>
+					<button type="submit" class="btn" id="submit-btn">Register</button>
+				</div>
+			</form:form>
+		</div>
+	</section>
+</main>
+
+<!-- Footer -->
+<%@ include file="component/footer.jsp" %>
+
 </body>
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/e19fcdf015.js" crossorigin="anonymous"></script>
@@ -81,7 +94,7 @@
 <script src="/js/authform-script.js"></script>
 <script>
 	$(document).ready(function() {
-		validateForm('register-form');
+		validateForm('register-admin-form');
 	});
 
 	// Check length of password onBlur

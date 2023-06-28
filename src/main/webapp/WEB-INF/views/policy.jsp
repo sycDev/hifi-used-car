@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hi-Fi Cars | Privacy Policy</title>
-	<link rel="icon" href="../assets/images/company-logo-only.png">
+	<link rel="icon" href="/assets/images/company-logo-only.png">
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
 		rel="stylesheet"
