@@ -82,7 +82,7 @@ public class Listing {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
 	private Set<Bid> bids = new HashSet<>();
 
 	public Long getListingId() {
