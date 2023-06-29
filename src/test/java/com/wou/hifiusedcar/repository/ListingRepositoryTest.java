@@ -13,7 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
+import java.util.Date;
 
 import com.wou.hifiusedcar.entity.Listing;
 import com.wou.hifiusedcar.entity.User;
@@ -44,9 +45,8 @@ public class ListingRepositoryTest {
 				+ "E55 AMG touts low mileage for one of these, a gorgeous two-tone interior, and no modifications. Plus, it comes with "
 				+ "a clean, accident-free Carfax report – AND it's offered with the added excitement of no reserve.";
 		BigDecimal minPrice = new BigDecimal("30000.00");
-		String dateTimeString = "2023-06-30T12:00:00";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-		LocalDateTime endTime = LocalDateTime.parse(dateTimeString, formatter);
+		LocalDateTime dateTime = LocalDateTime.parse("2023-06-30T12:00:00");
+		Date endTime = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
 		String status = "Active";
 		// Retrieve the User account from database
 		User seller = userRepository.findByEmail("alvin@gmail.com").get();

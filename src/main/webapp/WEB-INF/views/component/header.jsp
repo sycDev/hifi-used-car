@@ -66,7 +66,7 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<sec:authorize access="hasAuthority('USER')">
-						<div class="me-3 my-auto">
+						<div class="me-3 my-auto py-2">
 							<a href="/sell-car" class="btn" id="sell-btn">Sell Your Car</a>
 						</div>
 					</sec:authorize>

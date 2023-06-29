@@ -1,7 +1,6 @@
 package com.wou.hifiusedcar.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -68,7 +67,7 @@ public class Listing {
 
 	@NotNull(message = "End time is required")
 	@Column(name = "end_time", nullable = false)
-    private LocalDateTime endTime;
+    private Date endTime;
 
 	@NotBlank(message = "Status is required")
 	@Size(max = 20, message = "Status must not exceed 20 characters")
@@ -157,11 +156,11 @@ public class Listing {
 		this.minPrice = minPrice;
 	}
 
-	public LocalDateTime getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(LocalDateTime endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 
