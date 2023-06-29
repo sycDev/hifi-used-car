@@ -55,7 +55,7 @@ public class SecurityConfig {
 				.antMatchers(HttpMethod.GET, "/signup").permitAll()
 				.antMatchers(HttpMethod.POST, "/register").permitAll()
 				.antMatchers(HttpMethod.GET, "/sell-car").hasAuthority("USER")
-				.antMatchers(HttpMethod.GET, "/auction").hasAnyAuthority("USER", "ADMIN")
+				.antMatchers(HttpMethod.GET, "/auction", "/past-auction").hasAnyAuthority("USER", "ADMIN")
 				.antMatchers(HttpMethod.GET, "/dashboard/**").hasAuthority("ADMIN")
 				.and()
 			.formLogin()

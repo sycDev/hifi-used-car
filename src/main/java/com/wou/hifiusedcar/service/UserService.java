@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +58,21 @@ public class UserService {
     public Optional<User> getByEmail(String email) {
         return repository.findByEmail(email);
     }
+    
+    /**
+	 * Find the current logged-in user
+	 *
+	 * @return the logged-in user
+	 */
+	public Optional<User> findByCurrentUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.isAuthenticated()) {
+			String email = authentication.getName();
+			return repository.findByEmail(email);
+		}
+
+		return Optional.empty();
+	}
 
     /**
 	 * Create the user.
