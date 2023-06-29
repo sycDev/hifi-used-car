@@ -42,8 +42,9 @@
 		            <ul class="navbar-nav fw-semibold ms-lg-4 my-auto">
 			            <li>
 							<!-- Search Form Start -->
-							<form:form class="input-group w-auto my-auto d-flex " action="/search" method="get">
-								<input autocomplete="off" id="search-input" name="q" type="search" class="form-control rounded" placeholder="Search Make or Model">
+							<form:form class="input-group w-auto my-auto d-flex" id="search-form" action="/search" method="get">
+								<input autocomplete="off" id="search-input" name="q" type="search" class="form-control rounded" 
+									placeholder="Search Make or Model" title="Search Make or Model">
 								<span class="input-group-text border-0 d-flex" id="search-icon">
 									<label for="search">
 										<i class="fas fa-search"></i>
@@ -56,9 +57,8 @@
 		            </ul>
 	            </sec:authorize>
             </div>
-            
 			
-			<div class="d-lg-flex col-lg-3 justify-content-lg-end">
+			<div class="d-lg-flex col-lg-3 justify-content-lg-end mt-0 mt-xs-5">
 				<sec:authorize access="!isAuthenticated()">
 					<a class="btn mx-1" id="signup-btn" href="/signup">Sign Up</a>
 					<a class="btn" id="login-btn" href="/signin">Login</a>
@@ -66,12 +66,12 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<sec:authorize access="hasAuthority('USER')">
-						<div class="me-3">
+						<div class="me-3 my-auto">
 							<a href="/sell-car" class="btn" id="sell-btn">Sell Your Car</a>
 						</div>
 					</sec:authorize>
 					<ul class="list-unstyled my-auto">
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown my-2">
 							<a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="/assets/images/default-profile-pic.png" alt="User Profile Picture" class="rounded-circle" height="35">
 							</a>
@@ -94,7 +94,7 @@
 									</li>
 								</sec:authorize>
 								<li>
-									<form:form action="/logout" method="post">
+									<form:form id="logout-form" action="/logout" method="post">
 										<input type="submit" name="Logout" value="Logout" class="dropdown-item link-danger"></input>
 									</form:form>
 								</li>
