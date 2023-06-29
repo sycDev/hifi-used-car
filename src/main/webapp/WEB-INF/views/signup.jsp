@@ -85,10 +85,10 @@
 	});
 
 	// Check length of password onBlur
-	$('#password').blur(function () {
+	$('#password').blur(function() {
 		checkPwdLength();
 	});
-
+	
 	// Check length of password onInput
 	$('#password').on('input', function() {
 		if ($(this).hasClass('invalid-input')) {
@@ -99,7 +99,7 @@
 			});
 		}
 	});
-
+	
 	function checkPwdLength() {
 		// Validate only when it is not empty
 	    if ($('#password').val()) {

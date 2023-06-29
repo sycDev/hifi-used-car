@@ -25,7 +25,7 @@ function validateForm(formId) {
 	});
 }
 
-//Validate form with empty required fields
+// Validate form with empty required fields
 function validateEmptyRequired() {
 	var isValid = true;
 	$('form input, form select').each(function() {
@@ -40,6 +40,19 @@ function validateEmptyRequired() {
 		}
 	});
 	return isValid;
+}
+
+// Checking of username exceeds maximum length
+function checkUsernameLength() {
+	// Validate only when it is not empty
+    if ($('#username').val()) {
+    	let length = $('#username').val().length;
+    	if (length > 30) {
+            showError('username', "Please make sure not exceed 30 characters");
+        } else {
+            hideError('username');
+        }
+    }
 }
 
 // Data validation onBlur
@@ -59,11 +72,16 @@ $('form input').blur(function(e) {
 	}
 });
 
-//Validate email on blur if the input is not empty
+// Validate email on blur if the input is not empty
 $('#email').on('blur', function() {
 	if ($(this).val() !== '') {
 		validateEmail(this.value);
 	}
+});
+
+// Check length of username on blur
+$('#username').blur(function() {
+	checkUsernameLength();
 });
 
 /*
@@ -107,6 +125,17 @@ $('#email').on('input', function() {
 		$(this).on('input', function() {
 			if ($(this).val() !== '') {
 				validateEmail($(this).val());
+			}
+		});
+	}
+});
+
+// Check length of username onInput
+$('#username').on('input', function() {
+	if ($(this).hasClass('invalid-input')) {
+		$(this).on('input', function() {
+			if ($(this).val() !== '') {
+				checkUsernameLength();
 			}
 		});
 	}
