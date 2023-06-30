@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -168,6 +169,30 @@ public class ListingController {
     	}
     	
         return mav;
+    }
+    
+    /**
+     * Update listing status.
+     *
+     * @param listingId the listing id
+     * @param redirectAttributes the redirect attributes
+     * @return the string
+     */
+    @PostMapping("/listing/updateStatus")
+    public String updateListingStatus(@RequestParam("listingId") Long listingId, RedirectAttributes redirectAttributes) {
+        // Make sure the login session is valid
+        Optional<User> currentUser = userService.findByCurrentUser();
+        if (!currentUser.isPresent()) {
+            redirectAttributes.addFlashAttribute("errorMsg", "Invalid login session");
+            return "error";
+        } else {
+            listingService.updateStatus(listingId);
+            
+            // Add a success flash attribute
+            redirectAttributes.addFlashAttribute("successMsg", "Status updated successfully.");
+            
+            return "redirect:/my-listings";
+        }
     }
     
     /**

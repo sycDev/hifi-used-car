@@ -152,16 +152,34 @@
 							</div>
 							
 							<div class="card-footer">
-								<div class="my-auto">
-									<div class="price">
-										<span>Highest Bid</span>
-										<c:if test="${empty listing[0].bids}">
-											<h4 class="text-danger">No Bid Yet</h4>
-										</c:if>
-										<c:if test="${not empty listing[0].bids}">
-											<fmt:formatNumber value="${listing[1]}" pattern="#,##0" var="formattedBidPrice" />
-											<h4>RM${formattedBidPrice} </h4>
-										</c:if>
+								<div class="row">
+									<div class="col-9 my-auto">
+										<div class="price">
+											<span>Highest Bid</span>
+											<c:if test="${empty listing[0].bids}">
+												<h4 class="text-danger">No Bid Yet</h4>
+											</c:if>
+											<c:if test="${not empty listing[0].bids}">
+												<fmt:formatNumber value="${listing[1]}" pattern="#,##0" var="formattedBidPrice" />
+												<h4>RM${formattedBidPrice} </h4>
+											</c:if>
+										</div>
+									</div>
+									<div class="col-3 my-auto text-end">
+										<div class="form-check form-switch">
+											<input class="form-check-input status-toggle" type="checkbox" role="switch" 
+												id="statusToggle-${listing[0].listingId}"
+												data-id="${listing[0].listingId}"
+												
+												<c:if test="${listing[0].status == 'Active'}">
+										            checked
+										        </c:if>
+										        <c:if test="${listing[0].status == 'Sold'}">
+										            disabled
+										        </c:if>
+											>
+											<label class="form-check-label" for="statusToggle--${listing[0].listingId}"></label>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -171,6 +189,29 @@
 			</c:if>
 		</div>
 		<!-- Listing End -->
+		
+		<!-- Confirmation Modal for Changing Status Start -->
+		<div class="modal fade" id="statusConfirmationModal" tabindex="-1" aria-labelledby="statusConfirmationModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		        	<form:form action="/listing/updateStatus" method="post">
+			            <div class="modal-header">
+			                <h5 class="modal-title" id="statusConfirmationModalLabel">Confirmation</h5>
+			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			            </div>
+			            <div class="modal-body">
+			                <span id="statusConfirmationText"></span>
+			                <input type="hidden" name="listingId" id="selectedListingIdUpdateStatus">
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+			                <button type="submit" class="btn btn-danger">Yes, I'm Sure</button>
+			            </div>
+					</form:form>
+		        </div>
+		    </div>
+		</div>
+		<!-- Confirmation Modal for Changing Status End -->
 	</section>
 </main>
 
@@ -207,6 +248,41 @@
         <c:if test="${not empty errorMsg}">
             showToast("${errorMsg}", false);
         </c:if>
+        
+     	// To get the selected lising to update status
+    	$('.status-toggle').click(function() {
+    		let listingId = $(this).data('id');
+    		$('#selectedListingIdUpdateStatus').val(listingId);
+    	});
+
+		// Change status of listing
+		$(".status-toggle").on("change", function() {
+			let status = $(this).is(":checked") ? "Active" : "Inactive";
+		
+			let confirmationText = "Are you sure you want to ";
+		
+			if (status === "Active") {
+				confirmationText += "activate this listing?";
+			} else {
+				confirmationText += "deactivate this listing?";
+			}
+			$("#statusConfirmationText").text(confirmationText);
+		
+			// Show the confirmation modal
+			$("#statusConfirmationModal").modal("show");
+		});
+		
+		// Handle the form submission confirmation
+		$("#statusConfirmSubmit").on("click", function() {
+			// Submit the form
+			$("#update-status-form").submit();
+		});
+		 
+		// Handle the modal dismissal
+		$("#statusConfirmationModal").on("hidden.bs.modal", function() {
+			// Restore the previous status
+			location.reload();
+		});
 	});
 
     function showToast(message, isSuccess) {
