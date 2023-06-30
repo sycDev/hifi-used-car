@@ -10,9 +10,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wou.hifiusedcar.entity.Listing;
 import com.wou.hifiusedcar.entity.User;
+import com.wou.hifiusedcar.service.BidService;
 import com.wou.hifiusedcar.service.ListingService;
 import com.wou.hifiusedcar.service.UserService;
 import com.wou.hifiusedcar.util.FormUtil;
@@ -30,6 +33,9 @@ import com.wou.hifiusedcar.util.FileUploadUtil;
 public class ListingController {
 	@Autowired
 	private ListingService listingService;
+	
+	@Autowired
+	private BidService bidService;
 	
 	@Autowired
 	private UserService userService;
@@ -43,7 +49,7 @@ public class ListingController {
 	/**
      * Displays the Auction page.
      *
-     * @return the name of the view to display Auction page
+     * @return the ModelAndView to display Auction page with on going listing records
      */
     @GetMapping("/auction")
     public ModelAndView showAuctionPage() {
@@ -65,9 +71,9 @@ public class ListingController {
     }
     
     /**
-     * Displays the Past Auction page.
+     * Displays the Past Auction page
      *
-     * @return the name of the view to display Past Auction page
+     * @return the ModelAndView to display Past Auction page with past listing records
      */
     @GetMapping("/past-auction")
     public ModelAndView showPastAuctionPage() {
@@ -80,7 +86,7 @@ public class ListingController {
     }
     
     /**
-     * Displays the Sell Car page. (Add Listing)
+     * Displays the Sell Car (Create listing) page
      *
      * @return the name of the view to display Sell Car page
      */
@@ -90,7 +96,7 @@ public class ListingController {
     }
     
     /**
-     * Creates the new listing.
+     * Creates the new listing
      *
      * @param listing the listing to be created
      * @param result the BindingResult
@@ -147,9 +153,9 @@ public class ListingController {
     }
     
     /**
-     * Displays the My Listings page.
+     * Displays the My Listings page
      *
-     * @return the name of the view to display My Listings page
+     * @return the ModelAndView to display My Listings page with my listings records
      */
     @GetMapping("/my-listings")
     public ModelAndView showMyListingsPage() {
@@ -176,7 +182,7 @@ public class ListingController {
      *
      * @param listingId the listing id
      * @param redirectAttributes the redirect attributes
-     * @return the string
+     * @return the redirect page to My Listings page if success
      */
     @PostMapping("/listing/updateStatus")
     public String updateListingStatus(@RequestParam("listingId") Long listingId, RedirectAttributes redirectAttributes) {
@@ -192,6 +198,37 @@ public class ListingController {
             redirectAttributes.addFlashAttribute("successMsg", "Status updated successfully.");
             
             return "redirect:/my-listings";
+        }
+    }
+    
+    /**
+     * Show listing details page
+     *
+     * @param listingId the listing id
+     * @param model the model
+     * @return the name of the view to display the Listing Details page
+     */
+    @GetMapping("/listing/{listingId}")
+    public String showListingDetailsPage(@PathVariable Long listingId, Model model) {
+    	// Make sure the login session is valid
+        Optional<User> currentUser = userService.findByCurrentUser();
+        if (!currentUser.isPresent()) {
+            model.addAttribute("errorMsg", "Invalid login session");
+            return "error";
+        } else {
+        	Optional<Listing> selectedListing = listingService.getByListingId(listingId);
+        	if (!selectedListing.isPresent()) {
+        		model.addAttribute("errorMsg", "Listing record not found");
+        		return "error";
+        	} else {
+        		Listing l = selectedListing.get();
+        		
+        		model.addAttribute("currentUserId", currentUser.get().getUserId());
+        		model.addAttribute("highestBid", bidService.getHighestBidPrice(l));
+        		model.addAttribute("listing", l);
+
+        		return "listingDetails";
+        	}
         }
     }
     

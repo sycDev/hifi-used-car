@@ -1,0 +1,44 @@
+#details .gallery {
+	width: 100%;
+}
+
+#details .gallery ul {
+	list-style: none outside none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+#lightSlider li {
+	display: block;
+	float: left;
+	margin-right: 6px;
+}
+
+#lightSlider img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+#desc {
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+#seller a {
+	color: #212427;
+}
+
+#seller a:hover {
+	color: #f10d33;
+}
+
+#bid-btn {
+	background-color: #f10d33;
+	color: #fff;
+	border-radius: 0 0 5px 5px;
+}
+
+#bid-btn:hover {
+	background-color: rgba(192, 10, 40, 0.8);
+}

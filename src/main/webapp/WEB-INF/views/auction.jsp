@@ -162,7 +162,7 @@
 									</div>
 									<sec:authorize access="hasAuthority('USER')">
 										<div class="col-6 my-auto text-end">
-											<a href="#" class="btn" id="bid-btn">Place Bid</a>
+											<a href="/listing/${listing[0].listingId}" class="btn" id="bid-btn">Place Bid</a>
 										</div>
 									</sec:authorize>
 								</div>

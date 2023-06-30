@@ -45,6 +45,16 @@ public class ListingService {
 	public List<Object[]> getMyListings(Long currentUserId) {
 		return repository.findMyListings(currentUserId);
 	}
+	
+	/**
+     * Find a listing by its ID
+     *
+     * @param listingId the ID of the listing to be found
+     * @return an Optional object containing the listing if found, or an empty Optional if not found
+     */
+    public Optional<Listing> getByListingId(Long listingId) {
+        return repository.findById(listingId);
+    }
 
 	/**
 	 * Creates the listing

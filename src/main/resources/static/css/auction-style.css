@@ -38,6 +38,11 @@
 	color: #fff;
 }
 
+#bid-btn:hover,
+#filter-submit-btn:hover {
+	background-color: rgba(192, 10, 40, 0.8);
+}
+
 .card-title a, 
 .card-title a:focus,
 .card-title a:active {
@@ -64,11 +69,6 @@
 	font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
 	color: #222;
 	font-size: 1.25rem;
-}
-
-#bid-btn:hover,
-#filter-submit-btn:hover {
-	background-color: rgba(192, 10, 40, 0.8);
 }
 
 .datepicker {
