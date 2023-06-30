@@ -49,4 +49,25 @@ public interface ListingRepository extends JpaRepository<Listing, Long>{
 	        + "GROUP BY l "
 	        + "ORDER BY ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
 	List<Object[]> findListingsPastAuction();
+	
+	/**
+	 * Finds a list of listing records that created by the current logged in user
+	 * with the corresponding highest bid price
+	 * sorted by the sequence of status "Active", "Sold" and "Inactive"
+	 * sorted by recently ended first
+	 *
+	 * @param currentUserId the user id that logged in
+	 * @return the list of all listings
+	 */	
+	@Query("SELECT l, (SELECT MAX(b2.bidPrice) FROM Bid b2 WHERE b2.listing = l) as highestBidPrice "
+			+ "FROM Listing l LEFT JOIN l.bids b WHERE "
+			+ "l.user.id = :currentUserId "
+	        + "GROUP BY l "
+	        + "ORDER BY "
+	        + "CASE WHEN l.status = 'Active' THEN 1 "
+	        + 		"WHEN l.status = 'Sold' THEN 2 "
+	        + 		"WHEN l.status = 'Inactive' THEN 3 "
+	        + 		"ELSE 4 END, "
+	        + "ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
+	List<Object[]> findMyListings(@Param("currentUserId") Long currentUserId);
 }

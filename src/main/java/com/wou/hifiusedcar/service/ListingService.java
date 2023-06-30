@@ -34,6 +34,15 @@ public class ListingService {
 	public List<Object[]> getListingsPastAuction() {
 		return repository.findListingsPastAuction();
 	}
+	
+	/**
+	 * Gets all the listings that created by current logged in user
+	 *
+	 * @return the list of all listings
+	 */
+	public List<Object[]> getMyListings(Long currentUserId) {
+		return repository.findMyListings(currentUserId);
+	}
 
 	/**
 	 * Creates the listing

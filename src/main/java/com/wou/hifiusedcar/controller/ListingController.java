@@ -146,6 +146,31 @@ public class ListingController {
     }
     
     /**
+     * Displays the My Listings page.
+     *
+     * @return the name of the view to display My Listings page
+     */
+    @GetMapping("/my-listings")
+    public ModelAndView showMyListingsPage() {
+    	ModelAndView mav = new ModelAndView();
+    	
+    	// Make sure the login session is valid
+    	Optional<User> currentUser = userService.findByCurrentUser();
+    	if (!currentUser.isPresent()) {
+    		mav.setViewName("error");
+            mav.addObject("errorMsg", "Invalid login session");
+    	} else {
+    		User user = currentUser.get();
+    		mav.setViewName("myListings");
+    		List<Object[]> listingList = listingService.getMyListings(user.getUserId());
+
+    		mav.addObject("listingList", listingList);
+    	}
+    	
+        return mav;
+    }
+    
+    /**
 	 * Handles the validation and upload of the store image file.
 	 *
 	 * @param imageFile           the store image file to handle
