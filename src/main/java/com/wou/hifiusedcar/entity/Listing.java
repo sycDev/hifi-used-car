@@ -24,6 +24,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -65,6 +66,7 @@ public class Listing {
 	private BigDecimal minPrice;
 
 	@NotNull(message = "End time is required")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name = "end_time", nullable = false)
     private Date endTime;
 
