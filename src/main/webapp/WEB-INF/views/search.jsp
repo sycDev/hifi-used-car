@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Hi-Fi Cars | Past Auction</title>
+	<title>Hi-Fi Cars | Search</title>
 	<link rel="icon" href="/assets/images/company-logo-only.png">
 	<!-- Custom Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="/css/auction-style.css">
@@ -29,14 +29,7 @@
 <!-- Main Section -->
 <main>
 	<section class="container py-4 mt-5">
-		<h1 class="display-6 text-center my-3">Past Auction</h1>
-
-		<!-- Navigation Start -->
-		<div class="pill-nav mb-3">
-			<a href="/auction">Ongoing</a>
-			<a class="active" href="/past-auction">Past</a>
-		</div>
-		<!-- Navigation End -->
+		<h1 class="display-6 text-center my-3">Search Result</h1>
 
 		<!-- Filter Listing Start -->
 		<div class="filter-search">
@@ -86,7 +79,7 @@
 				</div>
 				<!-- Filter by Price End -->
 			</div>
-			
+
 			<!-- Filter Search Button Start -->
 			<div class="row my-2">
 				<div class="col-12">
@@ -97,6 +90,7 @@
 			</div>
 			<!-- Filter Search Button End -->
 		</div>
+		<!-- Filter Listing End -->
 
 		<!-- Toast Return Message Start -->
 		<div class="fixed-bottom m-3">
@@ -112,26 +106,30 @@
 		</div>
 		<!-- Toast Return Message End -->
 
-		<!-- Listing Start -->
+		<!-- Search Result Counter Start -->
+		<c:if test="${totalListingFound != 0}">
+			<div class="mb-2">
+				${totalListingFound} listing(s) found
+			</div>
+		</c:if>
+		<!-- Search Result Counter End -->
+
+		<!-- Search Results Listing Start -->
 		<div class="row row-cols-1 row-cols-md-3 g-4">
-			<c:if test="${empty listingList}">
+			<c:if test="${empty listingResultList}">
 				<div class="text-center mx-auto mt-5">
-					<h4>No Listing Yet</h4>
-					<img class="img-fluid" src="/assets/images/no-result.png" alt="No Listing Record" width="320">
+					<h4>No Result Matched</h4>
+					<img class="img-fluid" src="/assets/images/no-result.png" alt="No Listing Matched" width="320">
 				</div>
 			</c:if>
 
-			<c:if test="${not empty listingList}">
-				<c:forEach items="${listingList}" var="listing">
+			<c:if test="${not empty listingResultList}">
+				<c:forEach items="${listingResultList}" var="listing">
 					<div class="col">
 						<div class="card h-100">
 							<a href="/listing/${listing[0].listingId}">
 								<img src="/upload/listing/${listing[0].image}" class="card-img-top position-relative" alt="${listing[0].regYear} ${listing[0].make} ${listing[0].model}" width="100%" height="auto">
 							</a>
-
-							<c:if test="${listing[0].status == 'Sold'}">
-								<span class="badge top-0 start-50 translate-middle text-bg-warning position-absolute">${listing[0].status}</span>
-							</c:if>
 							
 							<div class="card-body">
 								<h5 class="card-title text-center">
@@ -150,17 +148,24 @@
 							</div>
 							
 							<div class="card-footer">
-								<div class="my-auto">
-									<div class="price">
-										<span>Highest Bid</span>
-										<c:if test="${empty listing[0].bids}">
-											<h4 class="text-danger">No Bid Placed</h4>
-										</c:if>
-										<c:if test="${not empty listing[0].bids}">
-											<fmt:formatNumber value="${listing[1]}" pattern="#,##0" var="formattedBidPrice" />
-											<h4>RM${formattedBidPrice} </h4>
-										</c:if>
+								<div class="row">
+									<div class="col-6 my-auto">
+										<div class="price">
+											<span>Highest Bid</span>
+											<c:if test="${empty listing[0].bids}">
+												<h4 class="text-danger">No Bid Placed</h4>
+											</c:if>
+											<c:if test="${not empty listing[0].bids}">
+												<fmt:formatNumber value="${listing[1]}" pattern="#,##0" var="formattedBidPrice" />
+												<h4>RM${formattedBidPrice} </h4>
+											</c:if>
+										</div>
 									</div>
+									<sec:authorize access="hasAuthority('USER')">
+										<div class="col-6 my-auto text-end">
+											<a href="/listing/${listing[0].listingId}" class="btn" id="bid-btn">Place Bid</a>
+										</div>
+									</sec:authorize>
 								</div>
 							</div>
 						</div>
@@ -168,7 +173,7 @@
 				</c:forEach>
 			</c:if>
 		</div>
-		<!-- Listing End -->
+		<!-- Search Results Listing End -->
 	</section>
 </main>
 
@@ -186,38 +191,37 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
 <!-- Bootstrap Datepicker -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
 	integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Custom JS Script for Auction -->
 <script src="/js/auction-script.js"></script>
 <script>
-	$(document).ready(function() {	
-	    // Showing the success message from controller
-	    <c:if test="${not empty successMsg}">
-	        showToast("${successMsg}", true);
-	    </c:if>
-	    
-	 	// Showing the error message from controller
-	    <c:if test="${not empty errorMsg}">
-	        showToast("${errorMsg}", false);
-	    </c:if>
-	});
-	
-	function showToast(message, isSuccess) {
-	    if (isSuccess) {
-	        $('#toast-icon').html('<i class="fa fa-circle-check fa-xl d-flex" style="color: #228B22"></i>');
-	    } else {
-	        $('#toast-icon').html('<i class="fa fa-circle-exclamation fa-xl d-flex" style="color: #D90429"></i>');
-	    }
-	    $('#toast-message').html(message);
-	    $('.toast').toast('show');
-	}
+    $(document).ready(function() { 	
+        // Showing the success message from controller
+        <c:if test="${not empty successMsg}">
+            showToast("${successMsg}", true);
+        </c:if>
+        
+     	// Showing the error message from controller
+        <c:if test="${not empty errorMsg}">
+            showToast("${errorMsg}", false);
+        </c:if>
+    });
+
+    function showToast(message, isSuccess) {
+        if (isSuccess) {
+            $('#toast-icon').html('<i class="fa fa-circle-check fa-xl d-flex" style="color: #228B22"></i>');
+        } else {
+            $('#toast-icon').html('<i class="fa fa-circle-exclamation fa-xl d-flex" style="color: #D90429"></i>');
+        }
+        $('#toast-message').html(message);
+        $('.toast').toast('show');
+    }
 
 	/* Update time left dynamically */
 	// Get the start time and end time passed from the controller
-	<c:forEach items="${listingList}" var="listing">
+	<c:forEach items="${listingResultList}" var="listing">
 		let startTime${listing[0].listingId} = new Date('${listing[0].createdAt}');
 		let endTime${listing[0].listingId} = new Date('${listing[0].endTime}');
 		
@@ -237,23 +241,23 @@
 				let hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 				let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
 				let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-	
+
 				// Build the countdown text
 				let countdownText = '';
 				if (days > 0) {
 					countdownText += days + 'd ';
 				}
-	
+
 				if (hours > 0 || countdownText !== '') {
 					countdownText += hours + 'h ';
 				}
-	
+
 				if (minutes > 0 || countdownText !== '') {
 					countdownText += minutes + 'm ';
 				}
-	
+
 				countdownText += seconds + 's';
-	
+
 				// Display the countdown
 				$('#countdown-${listing[0].listingId}').text(countdownText);
 			}

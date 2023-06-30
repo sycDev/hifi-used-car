@@ -235,10 +235,6 @@
 <script src="/js/auction-script.js"></script>
 <script>
     $(document).ready(function() {
-    	// Enable tooltips
-    	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-    	
         // Showing the success message from controller
         <c:if test="${not empty successMsg}">
             showToast("${successMsg}", true);

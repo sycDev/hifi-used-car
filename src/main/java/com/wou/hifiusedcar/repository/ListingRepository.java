@@ -70,4 +70,21 @@ public interface ListingRepository extends JpaRepository<Listing, Long>{
 	        + 		"ELSE 4 END, "
 	        + "ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
 	List<Object[]> findMyListings(@Param("currentUserId") Long currentUserId);
+	
+	/**
+	 * Searches for localities based on a keyword
+	 * 
+	 * @param keyword the keyword to search for
+	 * @return a list of localities matching the keyword
+	*/
+	@Query("SELECT l , (SELECT MAX(b2.bidPrice) FROM Bid b2 WHERE b2.listing = l) as highestBidPrice "
+			+ "FROM Listing l LEFT JOIN l.bids b "
+			+ "WHERE l.status <> 'Inactive' AND "
+			+ "l.user.id <> :currentUserId AND "
+            + "(l.make LIKE CONCAT('%', :keyword, '%') OR "
+            + "l.model LIKE CONCAT('%', :keyword, '%')) AND "
+            + "TRIM(:keyword) != '' "
+            + "GROUP BY l "
+            + "ORDER BY ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
+	List<Object[]> search(@Param("currentUserId") Long currentUserId, @Param("keyword") String keyword);
 }

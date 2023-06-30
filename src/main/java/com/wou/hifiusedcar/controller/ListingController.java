@@ -233,6 +233,36 @@ public class ListingController {
     }
     
     /**
+     * Show search results page with the list of listings based on the keyword input by user
+     * (by Model or Make).
+     *
+     * @param keyword the searching keyword
+     * @param model the model
+     * @return the model and view of Search Results Page and total number of listing found
+     */
+	@GetMapping("/search")
+    public ModelAndView showSearchResults(@RequestParam("q") String keyword, Model model) {
+        ModelAndView mav = new ModelAndView();
+        
+        // Make sure the login session is valid
+        Optional<User> currentUser = userService.findByCurrentUser();
+        if (!currentUser.isPresent()) {
+        	mav.addObject("errorMsg", "Invalid login session");
+        	mav.setViewName("error");
+        } else {
+        	// Retrieve all the listings with corresponding store that matched the keyword searched
+            List<Object[]> listingResultList = listingService.searchListing(currentUser.get().getUserId(), keyword);
+
+            mav.setViewName("search");
+            mav.addObject("totalListingFound", listingResultList.size());
+            mav.addObject("listingResultList", listingResultList);
+            mav.addObject("searchQuery", keyword);
+        }
+
+        return mav;
+    }
+    
+    /**
 	 * Handles the validation and upload of the store image file.
 	 *
 	 * @param imageFile           the store image file to handle
