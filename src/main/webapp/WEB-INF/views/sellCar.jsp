@@ -79,7 +79,7 @@
 					<span class="input-group-text">RM</span>
 					<input type="number" class="form-control" name="minPrice" id="minPrice" placeholder="Set a starting price" required>
 				</div>
-				<div class="error">
+				<div class="error ms-5">
 					<p id="error-minPrice"></p>
 				</div>
 				

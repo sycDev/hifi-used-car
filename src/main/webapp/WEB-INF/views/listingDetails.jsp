@@ -18,9 +18,6 @@
 	      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<!-- LightSlider CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/lightslider.css">
-	<style>
-		
-	</style>
 </head>
 <body>
 <!-- Header -->
@@ -155,9 +152,9 @@
 							status must be active
 						-->
 						<c:if test="${listing.status == 'Active' and listing.endTime ge currentTime and listing.user.userId != currentUserId}">
-							<a href="#" class="btn" id="bid-btn">
+							<button class="btn" id="bid-btn" data-bs-toggle="modal" data-bs-target="#placeBidModal">
 								Place Bid
-							</a>
+							</button>
 						</c:if>
 					</sec:authorize>
 				</div>
@@ -165,29 +162,40 @@
 		</div>
 		<!-- Listing Details End -->
 		
-		<!-- Confirmation Modal for Placing Bid Start -->
-		<div class="modal fade" id="statusConfirmationModal" tabindex="-1" aria-labelledby="statusConfirmationModalLabel" aria-hidden="true">
+		<!-- Modal Form for Placing Bid Start -->
+		<div class="modal fade" id="placeBidModal" tabindex="-1" aria-labelledby="placeBidModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
-		        	<form:form action="/listing/updateStatus" method="post">
+		        	<form:form modelAttribute="bid" action="/bid/add" method="post" id="add-new-bid-form" novalidate="true">
 			            <div class="modal-header">
-			                <h5 class="modal-title" id="statusConfirmationModalLabel">Confirmation</h5>
+			                <h5 class="modal-title" id="placeBidModalLabel">Place New Bid</h5>
 			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			            </div>
 			            <div class="modal-body">
-			                <span id="statusConfirmationText"></span>
-			                <input type="number" name="bidPrice" id="bidPrice">
-			                <input type="hidden" name="listingId" id="selectedListingIdPlaceBid">
+			                <label class="form-label" for="bidPrice">Bid Amount</label>
+			                <div class="input-group">
+								<span class="input-group-text">RM</span>
+			                	<input type="number" class="form-control" name="bidPrice" id="bidPrice" required>
+							</div>
+							<div class="error ms-5">
+								<p id="error-bidPrice"></p>
+							</div>
+
+							<c:if test="${not empty highestBid}">
+								<small class="form-text text-muted">Note: The bid amount must be higher than the current highest bid price RM${formattedBidPrice}</small>
+			                </c:if>
+			                
+			                <input type="hidden" name="listingId" value="${listing.listingId}">
 			            </div>
 			            <div class="modal-footer">
 			                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-			                <button type="submit" class="btn btn-danger">Yes, I'm Sure</button>
+			                <button type="submit" class="btn btn-danger">Submit</button>
 			            </div>
 					</form:form>
 		        </div>
 		    </div>
 		</div>
-		<!-- Confirmation Modal for Placing Bid End -->
+		<!-- Modal Form for Placing Bid End -->
 	</section>
 </main>
 
@@ -205,6 +213,8 @@
 	crossorigin="anonymous"></script>
 <!-- LightSlider JS -->
 <script src="/js/lightslider.js"></script>
+<!-- Custom JS Script for Form Validation -->
+<script src="/js/form-script.js"></script>
 <script>
     $(document).ready(function() {
 		// Enable image slider
@@ -231,34 +241,40 @@
             showToast("${errorMsg}", false);
         </c:if>
         
-     	// To get the selected lising to update status
-    	$('.status-toggle').click(function() {
-    		let listingId = $(this).data('id');
-    		$('#selectedListingIdUpdateStatus').val(listingId);
-    	});
+     	// Validate Place New Bid Form before submit
+        $('#add-new-bid-form').submit(function(e) {
+            e.preventDefault();
+            let fields = [];
 
-		// Change status of listing
-		$(".status-toggle").on("change", function() {
-			let status = $(this).is(":checked") ? "Active" : "Inactive";
-		
-			let confirmationText = "Are you sure you want to ";
-		
-			if (status === "Active") {
-				confirmationText += "activate this listing?";
-			} else {
-				confirmationText += "deactivate this listing?";
-			}
-			$("#statusConfirmationText").text(confirmationText);
-		
-			// Show the confirmation modal
-			$("#statusConfirmationModal").modal("show");
+            if (validateForm('#add-new-bid-form', fields)) {
+                this.submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+     	
+     	// Reset input field and error
+		$("#placeBidModal").on("hidden.bs.modal", function() {
+			// Restore the previous status
+			$('#bidPrice').val('');
+			hideError($('#bidPrice').attr('id'));
+			$('#bidPrice').removeClass('valid-input');
 		});
-		
-		// Handle the form submission confirmation
-		$("#statusConfirmSubmit").on("click", function() {
-			// Submit the form
-			$("#update-status-form").submit();
-		});
+	});
+    
+    // Validate bid amount input field onBlur & onInput
+	$('#bidPrice').on('blur input', function() {
+		let bidAmount = $(this).val();
+		    
+		if (bidAmount < 0) {
+			$(this).val('');
+			showError($(this).attr('id'), "Bid amount cannot be negative");
+		} else if (bidAmount == 0) {
+			$(this).val('');
+			showError($(this).attr('id'), "Bid amount must be greater than 0");
+		} else {
+			hideError($(this).attr('id'));
+		}
 	});
 
     function showToast(message, isSuccess) {
