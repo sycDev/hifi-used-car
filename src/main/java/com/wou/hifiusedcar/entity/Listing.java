@@ -46,7 +46,6 @@ public class Listing {
 	@Column(name = "reg_year", nullable = false)
 	private Integer regYear;
 
-	@NotBlank(message = "Image is required")
 	@Size(max = 64)
     private String image;
 

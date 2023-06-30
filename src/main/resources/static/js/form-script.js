@@ -16,7 +16,7 @@ $(document).ready(function() {
                 icon: 'error',
                 title: "Oops...",
                 text: "File is too big! (Max: 2MB)",
-                confirmButtonColor: '#17b978',
+                confirmButtonColor: '#f10d33',
             })
             clearImageFileInput();
         } else if (!isAllowed) {
@@ -25,7 +25,7 @@ $(document).ready(function() {
                 icon: 'error',
                 title: "Oops...",
                 text: "File type not supported (Only allowed: .jpeg/.jpg/.png)",
-                confirmButtonColor: '#17b978',
+                confirmButtonColor: '#f10d33',
             })
             clearImageFileInput();
         } else {
@@ -35,6 +35,7 @@ $(document).ready(function() {
 
     $('#clear-img-btn').click(function() {
         clearImageFileInput();
+        $('#imageFile').removeClass('valid-input').removeClass('invalid-input');
     });
 });
 
@@ -137,8 +138,10 @@ function checkLengthOnBlur(elementId, min, max) {
 function validateFieldLength(elementId, min, max) {
     let field = $(elementId);
     let length = field.val().length;
-
-    if (length < min) {
+    
+    if (min == 1 && length < min) {
+    	showError(field.attr('id'), "Please fill out this field");
+    } else if (min != 1 && length < min) {
         showError(field.attr('id'), "Please make sure at least " + min + " characters");
     } else if (length > max) {
         showError(field.attr('id'), "Please make sure not exceed " + max + " characters");
