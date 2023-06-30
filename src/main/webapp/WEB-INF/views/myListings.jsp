@@ -145,8 +145,8 @@
 								<fmt:formatNumber value="${listing[0].minPrice}" pattern="#,##0" var="formattedMinPrice" />
 								<i class="fas fa-money-bill-wave" title="Minimum Price"></i> RM${formattedMinPrice} <br>
 
-								<fmt:formatNumber value="${listing[0].milleage}" pattern="#,##0" var="formattedMilleage" />
-								<i class="fas fa-road" title="Milleage"></i> ${formattedMilleage} km<br>
+								<fmt:formatNumber value="${listing[0].mileage}" pattern="#,##0" var="formattedMileage" />
+								<i class="fas fa-road" title="Mileage"></i> ${formattedMileage} km<br>
 
 								<i class="fas fa-clock" title="Time Left"></i> <span class="badge text-bg-warning" id="countdown-${listing[0].listingId}"></span> <br>
 							</div>
@@ -157,7 +157,7 @@
 										<div class="price">
 											<span>Highest Bid</span>
 											<c:if test="${empty listing[0].bids}">
-												<h4 class="text-danger">No Bid Yet</h4>
+												<h4 class="text-danger">No Bid Placed</h4>
 											</c:if>
 											<c:if test="${not empty listing[0].bids}">
 												<fmt:formatNumber value="${listing[1]}" pattern="#,##0" var="formattedBidPrice" />

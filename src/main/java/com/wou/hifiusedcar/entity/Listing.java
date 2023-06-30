@@ -53,9 +53,9 @@ public class Listing {
 	@Transient
     private MultipartFile imageFile;
 
-	@NotNull(message = "Milleage is required")
+	@NotNull(message = "Mileage is required")
 	@Min(value = 0, message = "Mileage must be a non-negative value")
-	private Integer milleage;
+	private Integer mileage;
 
 	@Type(type = "text")
 	@Column(name = "description", nullable = true)
@@ -133,12 +133,12 @@ public class Listing {
 		this.imageFile = imageFile;
 	}
 
-	public int getMilleage() {
-		return milleage;
+	public int getMileage() {
+		return mileage;
 	}
 
-	public void setMilleage(int milleage) {
-		this.milleage = milleage;
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
 	}
 
 	public String getDescription() {

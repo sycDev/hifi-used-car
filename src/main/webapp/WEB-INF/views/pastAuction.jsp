@@ -21,7 +21,6 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
 		integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer">
-
 </head>
 <body>
 <!-- Header -->
@@ -144,8 +143,8 @@
 								<fmt:formatNumber value="${listing[0].minPrice}" pattern="#,##0" var="formattedMinPrice" />
 								<i class="fas fa-money-bill-wave" title="Minimum Price"></i> RM${formattedMinPrice} <br>
 
-								<fmt:formatNumber value="${listing[0].milleage}" pattern="#,##0" var="formattedMilleage" />
-								<i class="fas fa-road" title="Milleage"></i> ${formattedMilleage} km<br>
+								<fmt:formatNumber value="${listing[0].mileage}" pattern="#,##0" var="formattedMileage" />
+								<i class="fas fa-road" title="Mileage"></i> ${formattedMileage} km<br>
 
 								<i class="fas fa-clock" title="Time Left"></i> <span class="badge text-bg-warning" id="countdown-${listing[0].listingId}"></span> <br>
 							</div>
@@ -155,7 +154,7 @@
 									<div class="price">
 										<span>Highest Bid</span>
 										<c:if test="${empty listing[0].bids}">
-											<h4 class="text-danger">No Bid Yet</h4>
+											<h4 class="text-danger">No Bid Placed</h4>
 										</c:if>
 										<c:if test="${not empty listing[0].bids}">
 											<fmt:formatNumber value="${listing[1]}" pattern="#,##0" var="formattedBidPrice" />
@@ -176,6 +175,7 @@
 <!-- Footer -->
 <%@ include file="component/footer.jsp" %>
 
+</body>
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/e19fcdf015.js" crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
@@ -264,5 +264,4 @@
 		}, 1000);
 	</c:forEach>
 </script>
-</body>
 </html>

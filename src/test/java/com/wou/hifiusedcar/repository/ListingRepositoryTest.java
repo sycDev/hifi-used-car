@@ -38,13 +38,12 @@ public class ListingRepositoryTest {
 		String model = "E55 AMG";
 		Integer regYear = 2000;
 		String image = "mercedes1.jpg";
-		Integer milleage = 55400;
+		Integer mileage = 55400;
 		String description = "The W210-generation Mercedes-Benz E55 AMG is settling nicely into its new role as a young classic – "
 				+ "not many of these were made, well-kept ones are becoming difficult to find, and values keep going up. I still have "
 				+ "tremendously fond memories of the one I owned ten years ago, and I truly wish I had never sold it. This particular "
-				+ "E55 AMG touts low mileage for one of these, a gorgeous two-tone interior, and no modifications. Plus, it comes with "
-				+ "a clean, accident-free Carfax report – AND it's offered with the added excitement of no reserve.";
-		BigDecimal minPrice = new BigDecimal("30000.00");
+				+ "E55 AMG touts low mileage for one of these, a gorgeous two-tone interior, and no modifications.";
+		BigDecimal minPrice = new BigDecimal("116700.00");
 		LocalDateTime dateTime = LocalDateTime.parse("2023-06-30T12:00:00");
 		Date endTime = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
 		String status = "Active";
@@ -57,7 +56,7 @@ public class ListingRepositoryTest {
 		listing.setModel(model);
 		listing.setRegYear(regYear);
 		listing.setImage(image);
-		listing.setMilleage(milleage);
+		listing.setMileage(mileage);
 		listing.setDescription(description);
 		listing.setMinPrice(minPrice);
 		listing.setEndTime(endTime);

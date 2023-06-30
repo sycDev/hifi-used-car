@@ -60,13 +60,13 @@
 					</div>
 				</div>
 				
-				<label class="form-label" for="milleage">Milleage: *</label>
+				<label class="form-label" for="mileage">Mileage: *</label>
 				<div class="input-group">
-					<input type="number" class="form-control" name="milleage" id="milleage" placeholder="Current milleage" required>
+					<input type="number" class="form-control" name="mileage" id="mileage" placeholder="Current mileage" required>
 					<span class="input-group-text">km</span>
 				</div>
 				<div class="error">
-					<p id="error-milleage"></p>
+					<p id="error-mileage"></p>
 				</div>
 				
 				<div class="mb-3">
