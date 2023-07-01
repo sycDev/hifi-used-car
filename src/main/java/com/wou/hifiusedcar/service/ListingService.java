@@ -64,6 +64,17 @@ public class ListingService {
     public Optional<Listing> getByListingId(Long listingId) {
         return repository.findById(listingId);
     }
+    
+    /**
+	 * Search listings with corresponding store by keyword 
+	 * Keyword: Make and Model
+	 *
+	 * @param keyword the searching keyword
+	 * @return the listing list found
+	 */
+	public List<Object[]> searchListing(Long currentUserId, String keyword) {
+		return repository.search(currentUserId, keyword);
+	}
 
 	/**
 	 * Creates the listing
