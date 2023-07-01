@@ -60,6 +60,12 @@ function checkUsernameLength() {
 // Checking for empty input field after blur the field
 // Change the bottom border color of the input that is empty
 $('form input').blur(function(e) {
+	var inputId = $(this).attr('id');
+		  
+	if (inputId === 'password') {
+		return; // Skip validation for password input as handle by other script
+	}
+
 	if (!$(this).val()) {
 		e.preventDefault(); // Prevent the form to submit
 		$(this).addClass('invalid-input');
@@ -104,15 +110,6 @@ function validateEmail(str) {
 		return true;
 	}
 }
-
-// Validate password length on blur if the input is not empty
-$('#password').on('input', function() {
-	if (!$(this).val()) {
-		showError('password', 'Please fill out this field');
-	} else {
-		hideError('password');
-	}
-});
 
 // Data validation onInput
 

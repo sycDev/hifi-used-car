@@ -60,7 +60,37 @@
 				<div class="error">
 					<small id="error-password"></small>
 				</div>
-				
+
+				<div class="d-none text-start" id="password-alert">
+					<ul class="list-unstyled mb-0">
+						<li class="requirements length">
+							<i class="fas fa-check text-success me-2"></i>
+							<i class="fas fa-times text-danger me-3"></i>
+							At least 8 characters
+						</li>
+						<li class="requirements lowercase">
+							<i class="fas fa-check text-success me-2"></i>
+							<i class="fas fa-times text-danger me-3"></i>
+							At least 1 lowercase letter
+						</li>
+						<li class="requirements uppercase">
+							<i class="fas fa-check text-success me-2"></i>
+							<i class="fas fa-times text-danger me-3"></i>
+							At least 1 uppercase letter
+						</li>
+						<li class="requirements num">
+							<i class="fas fa-check text-success me-2"></i>
+							<i class="fas fa-times text-danger me-3"></i>
+							At least 1 number
+						</li>
+						<li class="requirements special-char">
+							<i class="fas fa-check text-success me-2"></i>
+							<i class="fas fa-times text-danger me-3"></i>
+							At least 1 special character
+						</li>
+					</ul>
+				</div>
+
 				<button type="submit">Sign Up</button>
             </form:form>
         </div>
@@ -79,39 +109,11 @@
         crossorigin="anonymous"></script>
 <!-- Custom JS Script for Auth Form Validation -->
 <script src="/js/authform-script.js"></script>
+<!-- Custom JS Script for Password Validation -->
+<script src="/js/pwdValid-script.js"></script>
 <script>
 	$(document).ready(function() {
 		validateForm('register-form');
 	});
-
-	// Check length of password onBlur
-	$('#password').blur(function() {
-		checkPwdLength();
-	});
-	
-	// Check length of password onInput
-	$('#password').on('input', function() {
-		if ($(this).hasClass('invalid-input')) {
-			$(this).on('input', function() {
-				if ($(this).val() !== '') {
-					checkPwdLength();
-				}
-			});
-		}
-	});
-	
-	function checkPwdLength() {
-		// Validate only when it is not empty
-	    if ($('#password').val()) {
-	    	let length = $('#password').val().length;
-	    	if (length < 8) {
-	            showError('password', "Please make sure at least 8 characters");
-	        } else if (length > 64) {
-	            showError('password', "Please make sure not exceed 64 characters");
-	        } else {
-	            hideError('password');
-	        }
-	    }
-	}
 </script>
 </html>
