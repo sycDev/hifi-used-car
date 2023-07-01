@@ -59,6 +59,7 @@ public class SecurityConfig {
 				.antMatchers(HttpMethod.POST, "/bid/add").hasAuthority("USER")
 				.antMatchers(HttpMethod.GET, "/auction", "/past-auction", "/listing/**").hasAnyAuthority("USER", "ADMIN")
 				.antMatchers(HttpMethod.GET, "/dashboard/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.POST, "/dashboard/**").hasAuthority("ADMIN")
 				.and()
 			.formLogin()
 				.loginPage("/signin")

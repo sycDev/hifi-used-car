@@ -20,6 +20,15 @@ public class ListingService {
 	private ListingRepository repository;
 	
 	/**
+	 * Get all the listings
+	 *
+	 * @return the list of all the User
+	 */
+	public List<Object[]> getAllListings() {
+		return repository.findAllListings();
+	}
+	
+	/**
 	 * Gets all the listings (car sale post) for ongoing auction
 	 *
 	 * @return the list of all listings

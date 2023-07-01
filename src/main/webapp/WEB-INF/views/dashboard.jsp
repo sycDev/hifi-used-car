@@ -40,7 +40,7 @@
 									<i class="fas fa-car fa-3x"></i>
 									<h5 class="card-title mt-3">Listings</h5>
 									<p class="card-text">
-										Total Listings
+										Total Listings: ${totalListings}
 									</p>
 								</div>
 							</a>
