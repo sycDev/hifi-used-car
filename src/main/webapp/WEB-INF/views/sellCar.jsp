@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="container w-75">
-			<form:form modelAttribute="listing" id="add-new-listing-form" action="/listing/add" method="post" class="mx-lg-5" enctype="multipart/form-data">
+			<form:form modelAttribute="listing" id="add-new-listing-form" action="/listing/add" method="post" class="mx-lg-5" enctype="multipart/form-data" novalidate="true">
 
 				<c:if test="${not empty errMsg}">
 					<div class="alert alert-danger" role="alert">
@@ -169,6 +169,11 @@
 
     	$('#regYear').on('blur', function() {
     		let regYear = $(this).val();
+    		if (!regYear) {
+    			showError("regYear", "Please fill out this field");
+    			return ;
+    		}
+    		
     		if (regYear < 1930 || regYear > currentYear) {
         		showError("regYear", "Must be year between 1930 and " + currentYear);
         	} else {
@@ -178,8 +183,7 @@
     	
     	// Validate for minimum price must >= 1
     	$('#minPrice').on('blur', function() {
-    		let minPrice = $(this).val();
-    		if (minPrice < 1) {
+    		if ($(this).val() < 1) {
         		showError("minPrice", "Must be higher or equal 1");
         	} else {
         		hideError("minPrice");
@@ -188,8 +192,12 @@
     	
     	// Validate for mileage must be positive value
     	$('#mileage').on('blur', function() {
-    		let mileage = $(this).val();
-    		if (mileage < 0) {
+    		if (!$(this).val()) {
+    			showError("mileage", "Please fill out this field");
+    			return ;
+    		}
+    		
+    		if ($(this).val() < 0) {
         		showError("mileage", "Mileage must be non-negative value");
         	} else {
         		hideError("mileage");
