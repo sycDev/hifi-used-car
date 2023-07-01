@@ -226,11 +226,7 @@
 		    thumbItem: 6,
 		    adaptiveHeight: true
 		});  
-    	
-    	// Enable tooltips
-    	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-    	
+	
         // Showing the success message from controller
         <c:if test="${not empty successMsg}">
             showToast("${successMsg}", true);
