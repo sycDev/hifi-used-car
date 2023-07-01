@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hi-Fi Cars | Home</title>
-	<link rel="icon" href="assets/images/company-logo-only.png">
+	<link rel="icon" href="/assets/images/company-logo-only.png">
 	<!-- Custom Stylesheet -->
-	<link rel="stylesheet" type="text/css" href="css/index-style.css">
+	<link rel="stylesheet" type="text/css" href="/css/index-style.css">
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -53,10 +53,9 @@
 
 <!-- Footer -->
 <%@ include file="component/footer.jsp" %>
-
+</body>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
 	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" 
 	crossorigin="anonymous"></script>
-</body>
 </html>

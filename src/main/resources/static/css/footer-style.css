@@ -1,3 +1,8 @@
+.main-footer {
+	position: relative;
+	background: #eeeef0;
+}
+
 .main-footer a, 
 .main-footer a:hover,
 .main-footer a:focus,
@@ -10,11 +15,6 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
-}
-
-.main-footer {
-	position: relative;
-	background: #eeeef0;
 }
 
 .footer-content {

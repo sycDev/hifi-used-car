@@ -1,0 +1,139 @@
+body {
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	max-height: 100vh;
+	margin: -20px 0 50px;
+}
+
+#auth-container h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+#auth-container p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+#auth-container a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+#auth-container a:hover {
+	color: #f10d33;
+	text-decoration: underline;
+}
+
+#auth-container button {
+	border-radius: 20px;
+	border: 1px solid #f10d33;
+	background-color: #f10d33;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 12px;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+#auth-container button:active {
+	transform: scale(0.95);
+}
+
+#auth-container button:focus {
+	outline: none;
+}
+
+#auth-container form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 120px;
+	height: 100%;
+	text-align: center;
+}
+
+#auth-container input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+#auth-container .form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+#auth-container .sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+#auth-container .sign-up-container {
+	left: 0;
+	width: 50%;
+	z-index: 1;
+}
+
+#auth-container .overlay-container {
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: 0% 40%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+#auth-container .alert-icon {
+	font-size: 20px;
+}
+
+.error small {
+	color: red;
+}
+
+#auth-container .invalid-input {
+    border-bottom: 2px solid #ee1a1a;
+}
+
+#auth-container .valid-input {
+    border-bottom: 2px solid #228b22;
+}
+
+@media (max-width: 815px) {
+	#auth-container .overlay-container {
+		display: none;
+	}
+	
+	#auth-container .form-container {
+		width: 100%;
+	}
+	
+	#auth-container form {
+		padding: 0 50px;
+	}
+}

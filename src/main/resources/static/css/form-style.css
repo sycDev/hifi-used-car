@@ -1,0 +1,25 @@
+#submit-btn {
+    background-color: #f10d33;
+    color: #fff;
+}
+
+#submit-btn:hover {
+    background-color: rgba(192, 10, 40, 0.8);
+}
+
+form .form-control:focus {
+    border-color: #f10d33;
+    box-shadow: 0 0 0 0.25rem rgba(192, 10, 40, 0.25);
+}
+
+form .invalid-input {
+    border-bottom: 2px solid #EE1A1A;
+}
+
+form .valid-input {
+    border-bottom: 2px solid #228B22;
+}
+
+form .error {
+    color: #AF4242;
+}
