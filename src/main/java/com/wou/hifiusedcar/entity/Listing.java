@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -44,6 +45,7 @@ public class Listing {
 	private String model;
 
 	@NotNull(message = "Registration year is required")
+	@Min(value = 1930, message = "Invalid registration year")
 	@Column(name = "reg_year", nullable = false)
 	private Integer regYear;
 
@@ -61,12 +63,13 @@ public class Listing {
 	@Column(name = "description", nullable = true)
     private String description;
 
-	@DecimalMin(value = "1.00")
+	@DecimalMin(value = "1.00", message = "Minimum price must be greater or equal to 1.00")
 	@Column(name = "min_price", nullable = false)
 	private BigDecimal minPrice;
 
 	@NotNull(message = "End time is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@Future(message = "End time must be in the future")
 	@Column(name = "end_time", nullable = false)
     private Date endTime;
 

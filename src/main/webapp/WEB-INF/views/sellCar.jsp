@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="container w-75">
-			<form:form modelAttribute="listing" id="add-new-listing-form" action="/listing/add" method="post" class="mx-lg-5" enctype="multipart/form-data" novalidate="true">
+			<form:form modelAttribute="listing" id="add-new-listing-form" action="/listing/add" method="post" class="mx-lg-5" enctype="multipart/form-data">
 
 				<c:if test="${not empty errMsg}">
 					<div class="alert alert-danger" role="alert">
@@ -54,7 +54,7 @@
 				
 				<div class="mb-3">
 					<label class="form-label" for="regYear">Registration Year: *</label>
-					<input type="number" class="form-control" name="regYear" id="regYear" placeholder="No future year" required>
+					<input type="number" class="form-control" name="regYear" id="regYear" placeholder="No future year" min="1930" required>
 					<div class="error">
 						<p id="error-regYear"></p>
 					</div>
@@ -62,7 +62,7 @@
 				
 				<label class="form-label" for="mileage">Mileage: *</label>
 				<div class="input-group">
-					<input type="number" class="form-control" name="mileage" id="mileage" placeholder="Current mileage" required>
+					<input type="number" class="form-control" name="mileage" id="mileage" placeholder="Current mileage" min="0" required>
 					<span class="input-group-text">km</span>
 				</div>
 				<div class="error">
@@ -77,7 +77,7 @@
 				<label class="form-label" for="minPrice">Minimum Price: *</label>
 				<div class="input-group">
 					<span class="input-group-text">RM</span>
-					<input type="number" class="form-control" name="minPrice" id="minPrice" placeholder="Set a starting price" required>
+					<input type="number" class="form-control" name="minPrice" id="minPrice" placeholder="Set a starting price" min="1" required>
 				</div>
 				<div class="error ms-5">
 					<p id="error-minPrice"></p>
@@ -103,7 +103,7 @@
 
 				<div id="img-preview-div" class="mb-3 d-none">
 					Preview:
-					<img class="img-thumbnail" id="imgPreview" alt="Store Image Preview" width="200" src="">
+					<img class="img-thumbnail" id="imgPreview" alt="Listing Image Preview" width="200" src="">
 					<a class="btn btn-outline-secondary" id="clear-img-btn">Clear</a>
 				</div>
 
@@ -137,7 +137,7 @@
 <script src="/js/form-script.js"></script>
 <script>
     $(document).ready(function() {
-        // Validate length of storeName onBlur
+        // Validate length onBlur
 	    checkLengthOnBlur('#make', 1, 30);
 	    checkLengthOnBlur('#model', 1, 50);
 
@@ -147,20 +147,69 @@
 		$('#endTime').on('focus', function() {
 			$(this).attr('min', minDateTime);
 		});
+		
+		$('#endTime').on('blur', function() {
+    		let endTime = $(this).val();
+    		if (!isFutureDate(endTime)) {
+        		showError("endTime", "Must be in the future");
+        	} else {
+        		hideError("endTime");
+        	}
+    	});
+		
+		function isFutureDate(value) {
+		    now = new Date();
+		    input = new Date(value);
+		    return now.getTime() <= input.getTime();
+		}
 	    
+		// Make sure no future year input 
+    	let currentYear = new Date().getFullYear();
+    	document.getElementById("regYear").setAttribute("max", currentYear);
+
+    	$('#regYear').on('blur', function() {
+    		let regYear = $(this).val();
+    		if (regYear < 1930 || regYear > currentYear) {
+        		showError("regYear", "Must be year between 1930 and " + currentYear);
+        	} else {
+        		hideError("regYear");
+        	}
+    	});
+    	
+    	// Validate for minimum price must >= 1
+    	$('#minPrice').on('blur', function() {
+    		let minPrice = $(this).val();
+    		if (minPrice < 1) {
+        		showError("minPrice", "Must be higher or equal 1");
+        	} else {
+        		hideError("minPrice");
+        	}
+    	});
+    	
+    	// Validate for mileage must be positive value
+    	$('#mileage').on('blur', function() {
+    		let mileage = $(this).val();
+    		if (mileage < 0) {
+        		showError("mileage", "Mileage must be non-negative value");
+        	} else {
+        		hideError("mileage");
+        	}
+    	});
+		
         // Validate Add New Listing Form before submit
         $('#add-new-listing-form').submit(function(e) {
-            e.preventDefault();
-            let fields = [
-                { selector: '#make', minLength: 1, maxLength: 30 }, 
-                { selector: '#model', minLength: 1, maxLength: 50 }
-            ];
+        	e.preventDefault();
 
-            if (validateForm('#add-new-listing-form', fields)) {
-                this.submit();
-            } else {
-                e.preventDefault();
-            }
+			let fields = [
+			    { selector: '#make', minLength: 1, maxLength: 30 }, 
+			    { selector: '#model', minLength: 1, maxLength: 50 }
+			];
+			
+			if (validateForm('#add-new-listing-form', fields)) {
+	        	this.submit();
+			} else {
+			    e.preventDefault();
+			}
         });
     });
 </script>

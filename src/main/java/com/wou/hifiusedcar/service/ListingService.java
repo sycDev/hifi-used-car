@@ -66,8 +66,7 @@ public class ListingService {
     }
     
     /**
-	 * Search listings with corresponding store by keyword 
-	 * Keyword: Make and Model
+	 * Search listings by keyword (Make & Model)
 	 *
 	 * @param keyword the searching keyword
 	 * @return the listing list found

@@ -85,10 +85,13 @@ public interface ListingRepository extends JpaRepository<Listing, Long>{
 	List<Object[]> findMyListings(@Param("currentUserId") Long currentUserId);
   
   /**
-	 * Searches for localities based on a keyword
+	 * Searches for listings based on a keyword (Make & Model) 
+	 * not having status of inactive 
+	 * excluded user id of current logged in user
+	 * sorted by recently end
 	 * 
 	 * @param keyword the keyword to search for
-	 * @return a list of localities matching the keyword
+	 * @return a list of listings matching the keyword
 	*/
 	@Query("SELECT l , (SELECT MAX(b2.bidPrice) FROM Bid b2 WHERE b2.listing = l) as highestBidPrice "
 			+ "FROM Listing l LEFT JOIN l.bids b "

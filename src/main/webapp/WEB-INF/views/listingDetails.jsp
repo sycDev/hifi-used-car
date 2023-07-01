@@ -166,7 +166,7 @@
 		<div class="modal fade" id="placeBidModal" tabindex="-1" aria-labelledby="placeBidModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
-		        	<form:form modelAttribute="bid" action="/bid/add" method="post" id="add-new-bid-form" novalidate="true">
+		        	<form:form modelAttribute="bid" action="/bid/add" method="post" id="add-new-bid-form">
 			            <div class="modal-header">
 			                <h5 class="modal-title" id="placeBidModalLabel">Place New Bid</h5>
 			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

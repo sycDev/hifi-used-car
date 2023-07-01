@@ -250,7 +250,7 @@ public class ListingController {
         	mav.addObject("errorMsg", "Invalid login session");
         	mav.setViewName("error");
         } else {
-        	// Retrieve all the listings with corresponding store that matched the keyword searched
+        	// Retrieve all the listings with corresponding listing that matched the keyword searched
             List<Object[]> listingResultList = listingService.searchListing(currentUser.get().getUserId(), keyword);
 
             mav.setViewName("search");
@@ -263,9 +263,9 @@ public class ListingController {
     }
     
     /**
-	 * Handles the validation and upload of the store image file.
+	 * Handles the validation and upload of the listing image file.
 	 *
-	 * @param imageFile           the store image file to handle
+	 * @param imageFile           the listing image file to handle
 	 * @param redirectUrl         the redirect URL in case of validation errors
 	 * @param redirectAttributes  the redirect attributes to add error messages
 	 * @return the uploaded file name if successful, or the redirect URL if validation errors occur
