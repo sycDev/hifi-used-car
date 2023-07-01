@@ -143,7 +143,7 @@
 						</p>
 					</div>
 					<!-- Only USER role able to place bid -->
-					<sec:authorize access="hasAuthority('USER')">
+					<sec:authorize access="hasRole('USER')">
 						<c:set var="currentTime" value="<%= new java.util.Date() %>" />
 						<!-- 	
 							Show the bid button if 

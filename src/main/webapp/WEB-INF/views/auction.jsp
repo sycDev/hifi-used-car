@@ -160,7 +160,7 @@
 											</c:if>
 										</div>
 									</div>
-									<sec:authorize access="hasAuthority('USER')">
+									<sec:authorize access="hasRole('USER')">
 										<div class="col-6 my-auto text-end">
 											<a href="/listing/${listing[0].listingId}" class="btn" id="bid-btn">Place Bid</a>
 										</div>

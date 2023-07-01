@@ -88,7 +88,12 @@
 								<td>${loop.index + 1}</td>
 								<td>
 									<c:forEach items="${user.roles}" var="role">
-										<span class="badge text-bg-dark">${role.roleName}</span>
+										<c:if test="${role.roleName == 'ADMIN'}">
+											<span class="badge text-bg-dark">${role.roleName}</span>
+										</c:if>
+										<c:if test="${role.roleName == 'USER'}">
+											<span class="badge text-bg-secondary">${role.roleName}</span>
+										</c:if>
 									</c:forEach>
 								</td>
 								<td>${user.userId}</td>

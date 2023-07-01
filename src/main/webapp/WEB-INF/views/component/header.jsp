@@ -65,7 +65,7 @@
 				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
-					<sec:authorize access="hasAuthority('USER')">
+					<sec:authorize access="hasRole('USER')">
 						<div class="me-3 my-auto py-2">
 							<a href="/sell-car" class="btn" id="sell-btn">Sell Your Car</a>
 						</div>
@@ -83,12 +83,12 @@
 								<li>
 									<a class="dropdown-item" href="/profile">Profile</a>
 								</li>
-								<sec:authorize access="hasAuthority('ADMIN')">
+								<sec:authorize access="hasRole('ADMIN')">
 									<li>
 										<a class="dropdown-item" href="/dashboard">Dashboard</a>
 									</li>
 								</sec:authorize>
-								<sec:authorize access="hasAuthority('USER')">
+								<sec:authorize access="hasRole('USER')">
 									<li>
 										<a class="dropdown-item" href="/my-listings">My Listings</a>
 									</li>
