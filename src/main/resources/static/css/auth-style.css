@@ -124,6 +124,15 @@ body {
     border-bottom: 2px solid #228b22;
 }
 
+/* For password requirements in Sign Up Form */
+.wrong .fa-check {
+    display: none;
+}
+
+.good .fa-times {
+    display: none;
+}
+
 @media (max-width: 815px) {
 	#auth-container .overlay-container {
 		display: none;
