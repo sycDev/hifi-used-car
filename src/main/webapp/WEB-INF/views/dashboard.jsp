@@ -53,7 +53,7 @@
 									<i class="fas fa-gavel fa-3x"></i>
 									<h5 class="card-title mt-3">Bids</h5>
 									<p class="card-text">
-										Total Bids
+										Total Bids: ${totalBids}
 									</p>
 								</div>
 							</a>

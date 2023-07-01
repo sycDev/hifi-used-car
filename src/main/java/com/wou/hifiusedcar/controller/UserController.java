@@ -23,6 +23,7 @@ import com.wou.hifiusedcar.entity.User;
 import com.wou.hifiusedcar.service.RoleService;
 import com.wou.hifiusedcar.service.UserService;
 import com.wou.hifiusedcar.util.FormUtil;
+
 @Controller
 @RequestMapping("/dashboard")
 public class UserController {
@@ -31,18 +32,6 @@ public class UserController {
 	
 	@Autowired
 	private RoleService roleService;
-
-	/**
-     * Displays the Admin Dashboard page.
-     *
-     * @return the name of the view to display Admin Dashboard page
-     */
-	@GetMapping("")
-	public String showDashboardHomePage(Model model) {
-		List<User> userList = userService.getAllUsers();
-		model.addAttribute("totalUsers", userList.size());
-		return "dashboard";
-	}
 	
 	/**
      * Displays the Manage Users page.
