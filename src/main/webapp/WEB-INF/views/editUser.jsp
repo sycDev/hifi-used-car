@@ -89,7 +89,7 @@
         // Validate length requirements onBlur
         checkLengthOnBlur('#username', 1, 30);
 
-        // Validate Add New Locality Form before submit
+        // Validate Add New User Form before submit
         $('#edit-user-form').submit(function(e) {
             e.preventDefault();
             let fields = [

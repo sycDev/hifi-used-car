@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     }
 	
 	@ExceptionHandler(ListingNotFoundException.class)
-    public ModelAndView handleStoreNotFoundException(ListingNotFoundException ex) {
+    public ModelAndView handleListingNotFoundException(ListingNotFoundException ex) {
         ModelAndView mav = new ModelAndView("error");
         mav.addObject("errorImg", "error.png");
         mav.addObject("errorName", "An Error Occured");

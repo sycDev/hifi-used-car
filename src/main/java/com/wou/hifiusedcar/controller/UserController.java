@@ -77,7 +77,7 @@ public class UserController {
      * @return the Manage Users Page and message
      */
 	@PostMapping("/user/update")
-	public String updateStore(@Valid @ModelAttribute("user") User user,
+	public String updateUser(@Valid @ModelAttribute("user") User user,
             BindingResult result, RedirectAttributes redirectAttributes) {
 
 		Optional<User> selectedUser = userService.getByUserId(user.getUserId());
