@@ -44,7 +44,7 @@
 							<!-- Search Form Start -->
 							<form:form class="input-group w-auto my-auto d-flex" id="search-form" action="/search" method="get">
 								<input autocomplete="off" id="search-input" name="q" type="search" class="form-control rounded" 
-									placeholder="Search Make or Model" title="Search Make or Model">
+									placeholder="Search Make or Model" title="Search Make or Model" value="${searchQuery}">
 								<span class="input-group-text border-0 d-flex" id="search-icon">
 									<label for="search">
 										<i class="fas fa-search"></i>
@@ -66,7 +66,7 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<sec:authorize access="hasAuthority('USER')">
-						<div class="me-3 my-auto">
+						<div class="me-3 my-auto py-2">
 							<a href="/sell-car" class="btn" id="sell-btn">Sell Your Car</a>
 						</div>
 					</sec:authorize>

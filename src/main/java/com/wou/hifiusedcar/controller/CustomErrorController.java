@@ -51,6 +51,7 @@ public class CustomErrorController implements ErrorController {
             }
 
             default: {
+            	errorImg = "error.png";
                 errorName = "Unexpected Error";
                 errorMsg = "Something went wrong...";
                 errorDesc = "Error Code: " + errorCode;
