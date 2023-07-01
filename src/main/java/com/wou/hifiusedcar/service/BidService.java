@@ -2,6 +2,7 @@ package com.wou.hifiusedcar.service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -17,6 +18,15 @@ import com.wou.hifiusedcar.repository.BidRepository;
 public class BidService {
 	@Autowired
 	private BidRepository repository;
+	
+	/**
+	 * Get all the bids
+	 *
+	 * @return the list of all the Bid
+	 */
+	public List<Bid> getAllBids() {
+		return repository.findAll();
+	}
 
 	/**
 	 * Gets the highest bid price.
