@@ -13,6 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.wou.hifiusedcar.controller.CommonController;
+import com.wou.hifiusedcar.repository.BidRepository;
+import com.wou.hifiusedcar.repository.ListingRepository;
 import com.wou.hifiusedcar.repository.RoleRepository;
 import com.wou.hifiusedcar.repository.UserRepository;
 import com.wou.hifiusedcar.security.SecurityConfig;
@@ -33,6 +35,12 @@ public class CommonEndpointSecurityTest {
 	
 	@MockBean
 	private RoleRepository roleRepository;
+	
+	@MockBean
+	private ListingRepository listingRepository;
+
+	@MockBean
+	private BidRepository bidRepository;
 
 	@Test
 	@WithAnonymousUser
