@@ -186,3 +186,7 @@ You can modify these properties to match your database configuration.
 Note: Make sure you have MySQL installed and running on your machine before starting the application.
 <br>
 The database SQL script is located under the directory `src/main/resources/sql`.
+
+#### Physical Model Database Design
+
+![image](https://github.com/sycDev/hifi-used-car/assets/33170649/94a4b712-6333-443d-bb8a-b39b8eb9f492)
