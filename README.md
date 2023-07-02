@@ -139,6 +139,12 @@ There are two roles: User & Administrator
 
 ---
 
+## UML Class Diagram
+![image](https://github.com/sycDev/hifi-used-car/assets/33170649/ecbfb128-3af3-4210-8392-03171207e16a)
+
+
+---
+
 ## Prerequisites:
 
 - Java 8 or higher
