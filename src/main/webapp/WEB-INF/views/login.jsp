@@ -22,7 +22,7 @@
 <body>
     <div class="container" id="auth-container">
         <div class="form-container sign-in-container">
-            <form:form action="/login" method="post" id="login-form">
+            <form:form action="/login" method="post" id="login-form" novalidate="true">
 				<a href="/">
 				    <img src="/assets/images/company-logo-only.png" width="50" height="auto" alt="logo">
 				</a>
@@ -127,6 +127,14 @@
 <script src="/js/authform-script.js"></script>
 <script>
 	$(document).ready(function() {
+		$('#password').on('input blur', function(e) {
+			if (!$(this).val()) {
+				showError('password', 'Please fill out this field');
+			} else {
+				hideError('password');
+			}
+		});
+
 		validateForm('login-form');
 	});
 </script>
