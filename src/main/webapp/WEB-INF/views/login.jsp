@@ -22,7 +22,7 @@
 <body>
     <div class="container" id="auth-container">
         <div class="form-container sign-in-container">
-            <form:form action="/login" method="post" id="login-form" novalidate="true">
+            <form:form action="/login" method="post" id="login-form">
 				<a href="/">
 				    <img src="/assets/images/company-logo-only.png" width="50" height="auto" alt="logo">
 				</a>
