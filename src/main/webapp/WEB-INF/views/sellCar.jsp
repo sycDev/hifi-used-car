@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="container w-75">
-			<form:form modelAttribute="listing" id="add-new-listing-form" action="/listing/add" method="post" class="mx-lg-5" enctype="multipart/form-data" novalidate="true">
+			<form:form modelAttribute="listing" id="add-new-listing-form" action="/listing/add" method="post" class="mx-lg-5" enctype="multipart/form-data">
 
 				<c:if test="${not empty errMsg}">
 					<div class="alert alert-danger" role="alert">

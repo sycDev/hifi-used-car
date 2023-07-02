@@ -85,7 +85,8 @@ public interface ListingRepository extends JpaRepository<Listing, Long>{
 	List<Object[]> findMyListings(@Param("currentUserId") Long currentUserId);
   
   /**
-	 * Searches for listings based on a keyword (Make & Model) 
+	 * Searches for listings based on a keyword 
+	 * (Make or Model or RegYear, RegYear Make Model, Make Model) 
 	 * not having status of inactive 
 	 * excluded user id of current logged in user
 	 * sorted by recently end
@@ -98,7 +99,10 @@ public interface ListingRepository extends JpaRepository<Listing, Long>{
 			+ "WHERE l.status <> 'Inactive' AND "
 			+ "l.user.id <> :currentUserId AND "
             + "(l.make LIKE CONCAT('%', :keyword, '%') OR "
-            + "l.model LIKE CONCAT('%', :keyword, '%')) AND "
+            + "l.model LIKE CONCAT('%', :keyword, '%') OR "
+            + "CAST(l.regYear AS string) LIKE %:keyword% OR "
+            + "CONCAT(l.regYear, ' ', l.make, ' ', l.model) LIKE %:keyword% OR "
+            + "CONCAT(l.make, ' ', l.model) LIKE %:keyword%) AND "
             + "TRIM(:keyword) != '' "
             + "GROUP BY l "
             + "ORDER BY ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
