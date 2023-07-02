@@ -127,6 +127,14 @@
 <script src="/js/authform-script.js"></script>
 <script>
 	$(document).ready(function() {
+		$('#password').on('input blur', function(e) {
+			if (!$(this).val()) {
+				showError('password', 'Please fill out this field');
+			} else {
+				hideError('password');
+			}
+		});
+
 		validateForm('login-form');
 	});
 </script>
