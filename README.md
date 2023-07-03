@@ -27,7 +27,7 @@ There are two roles: User & Administrator
 
 ---
 
-#### Car Posting Module
+#### Listing Module
 - [x] Post car for sale with picture upload [User]
   - [ ] Multiple images upload
   - [ ] Admin approval before post listing
