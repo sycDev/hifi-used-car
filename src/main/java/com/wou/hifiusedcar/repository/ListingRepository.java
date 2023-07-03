@@ -14,14 +14,16 @@ public interface ListingRepository extends JpaRepository<Listing, Long>{
   /**
 	 * Finds a list of listing records 
 	 * with the corresponding highest bid price
-	 * sorted by recently ended first
+	 * sorted by recently ending first
+	 * then followed by already expired
 	 *
 	 * @return the list of all listings
 	 */	
 	@Query("SELECT l, (SELECT MAX(b2.bidPrice) FROM Bid b2 WHERE b2.listing = l) as highestBidPrice "
 			+ "FROM Listing l LEFT JOIN l.bids b "
 	        + "GROUP BY l "
-	        + "ORDER BY ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
+	        + "ORDER BY CASE WHEN l.endTime < CURRENT_TIMESTAMP THEN 1 ELSE 0 END, "
+	        + "ABS(TIMESTAMPDIFF(SECOND, l.endTime, CURRENT_TIMESTAMP))")
 	List<Object[]> findAllListings();
 
 	/**
