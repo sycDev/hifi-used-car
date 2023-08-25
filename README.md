@@ -140,8 +140,8 @@ There are two roles: User & Administrator
 ---
 
 ## UML Class Diagram
-![image](https://github.com/sycDev/hifi-used-car/assets/33170649/ecbfb128-3af3-4210-8392-03171207e16a)
 
+![UML Class Diagram](https://github.com/sycDev/hifi-used-car/assets/33170649/5d146304-15db-4fc6-a694-e272274da651)
 
 ---
 
@@ -195,4 +195,5 @@ The database SQL script is located under the directory `src/main/resources/sql`.
 
 #### Physical Model Database Design
 
-![image](https://github.com/sycDev/hifi-used-car/assets/33170649/94a4b712-6333-443d-bb8a-b39b8eb9f492)
+![Physical Model Database Design](https://github.com/sycDev/hifi-used-car/assets/33170649/319a5ea4-bc9b-4e7d-a36b-61caad3ba5aa)
+
